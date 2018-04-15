@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	 <meta charset="utf-8">
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+	 <meta name="description" content="">
+	 <meta name="author" content="">
+
+	 <title>Welcome to CSE6242</title>
+
+	 <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+	 <link href="../static/css/signup.css" rel="stylesheet">
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	 <!-- <script type="text/javascript">
+	 	$(function(){
+			$('button').click(function(){
+				var user = $('#inputUsername').val();
+				var pass = $('#inputPassword').val();
+				$.ajax({
+					url: '/signUpUser',
+					data: $('form').serialize(),
+					type: 'POST',
+					success: function(response){
+						console.log(response);
+					},
+					error: function(error){
+						console.log(error);
+					}
+				});
+			});
+		});
+	 </script>> -->
+</head>
+
+<body>
+    <div class="container">
+        <form class="form"  role="form" >
+        <h4 class="form-heading" text-align="center">Welcome, students!</h4>
+        <a href="http://127.0.0.1:5000/SignUp">
+        	<button class="btn btn-lg btn-primary btn-block" type="button" name="submit" value="campus">SignUp for campus CSE6242!</button>
+    	</a>
+    	<h4></h4>
+        <a href="https://cse6242.gatech.edu/">
+        	<button class="btn btn-lg btn-primary btn-block" type="button" name="submit" value="omscs">I am a OMSCS student. Take me to OMSCS CSE6242!</button>
+    	</a>
+
+		<!-- <button class="btn btn-lg btn-primary btn-block" id="inputUsername" name="username">campus</button>
+        <button class="btn btn-lg btn-primary btn-block" id="inputPassword" name="password">omscs</button> -->
+		</form>
+
+     </div>
+</body>
+
+</html>

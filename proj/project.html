@@ -1,0 +1,632 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>Project | CSE-6242 / CX 4242: Data and Visual Analytics | 
+Spring 2018 - Duen Horng (Polo) Chau | Georgia Tech</title>
+
+<!-- Latest compiled and minified Bootstrap CSS -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+
+<style>
+table.poster-table{
+  margin: 15px;
+}
+
+table.poster-table td{
+  padding: 5px;
+  vertical-align: top;
+}
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<div class="container">
+
+
+<h1 style="font-size:180%;">CSE6242 / CX4242, Spring 2018<br/>
+<strong><span class="data">Data</span> and <span class="vis">Visual</span> Analytics</strong><br/><a style="color:#444444;" href="http://www.gatech.edu">Georgia Tech</a>, <a style="color:#444444;" href="http://www.cc.gatech.edu">College of Computing</a></h1>
+
+<h1>Project 
+<!-- <span class="label label-danger">Evolving</span> -->
+</h1>
+
+
+<hr/>
+
+<h2>Grading & Schedule</h2>
+<ol>
+<li><a href="#proposal">Proposal (10%)</a></li>
+<li><a href="#proposal-presentation">Proposal presentation (10%)</a></li>
+<li><a href="#progress-report">Progress report (15%)</a></li>
+<li><a href="#poster-presentation">Final poster presentation (10%)</a></li>
+<!-- <li>Free points (5%)</li> -->
+<li><a href="#final-report">Final report (55%)</a></li>
+</ol>
+
+See course <a href="index.html#schedule">homepage's schedule table</a> for all deliverables' due dates.
+<br/><br/>
+
+
+<div class="alert alert-danger">
+<span class="label label-danger" style="font-size: 1em;">Important</span> 
+You will be submitting multiple files as part of your project deliverables. 
+We will deduct 5% from a project deliverable for <strong>every file</strong> whose filename or file format that is different from what we have specified. It is time consuming for us to find "missing" files or to guess their names.
+<br/><br/>
+For example, suppose the final report requires README.txt and report.pdf; if your team submit README.doc and report.doc, 10% will be deducted from the final report's score.
+</div>
+
+
+
+
+
+<h2>Teaming <span class="label label-danger">Important!</span></h2>
+The work will be carried out in
+teams of <b>4-6 persons</b>. 
+
+<br/><br/> 
+A team may consist of both on-campus and <strong>distance learning students (Q or Q3 section)</strong>. All such teams will have 3-day lags for all their deliverables. For proposal presentation and final presentation, those teams can choose to do that in class (physically) or submit videos (see details below). 
+
+<br/><br/>
+We will grade grad projects and undergrad projects <strong>separately</strong>; we generally expect grad projects to include more detailed analysis, comprehensive results, etc.
+
+<br/><br/>
+<strong>Polo recommends each group to consist of either all grads or all undergrads.</strong> The main reason is that grads and undergrads have different expectations and work schedules.
+If you  want to form a group with both grads and undergrads:
+<ol>
+<li>We will grade that group as if <strong>all members are grad students</strong></li>
+<li>Every member <strong>MUST</strong> fully understand the potential challenges in coordinating work schedules (e.g., grads usually take class on TH, undergrads on MWF) and expectations (e.g., course grades are generally very important for undergrads)</li>
+</ol>
+
+<br/>
+It is optional for an auditor to work on a project. When an <strong>auditor</strong> joins a team, the auditor <strong>MUST</strong> contribute to the team as an enrolled student, and the whole team will be graded as if everyone is enrolled, otherwise it will be unfair to other teams — every team member must fully understand and accept this requirement.
+
+
+
+<h2 style="margin-top:50px;">Choosing a Topic</h2>
+	
+<h4>Pick your own topic:</h4>
+<ul>
+  <li>You need to justify that the topic is interesting,
+    relevant to the course, of suitable difficulty. </li>
+  <li> Required components:
+    <ol>
+      <li>at least one <strong>large, real dataset</strong>;</li>
+      <li>some <strong>non-trivial</strong> analysis/algorithms/computation performed on the dataset (e.g., computing basic statistics, like average, min/max will not be enough); and </li>
+      <li>an <strong>interactive user interface</strong> that interact with the algorithms (can be visual, voice-controlled, on tablet, desktop, etc.).</li>
+    </ol>
+  </li>
+</ul>
+	
+<h4>Harder way:</h4>
+<ul>
+  <li>Joint projects with other courses might be negotiable. You must obtain the instructor's approval, and you
+    need to clarify exactly what will be done for this course that is on top of and different from what you will do for the other course.</li>
+  <li>Projects related to your dissertation/master-project are also
+    possible, as long as there is no '<span style="font-style: italic;">double-dipping</span>', i.e., you clearly
+    specify what the project will do, in <span style="font-style: italic;">addition</span> to what you were planning to do for your thesis anyway.</li>
+</ul>
+
+
+
+<p>Once you have selected a topic, you should do some background
+  reading so that you are capable of describing, in some detail, what
+  you expect to accomplish. For example, if you decide that you want
+  to implement some new proposal for a multidimensional file
+  structure, you will have to carefully read the paper that proposes
+  similar structures, pinpoint their weaknesses, and explain how your
+  approach will address these weaknesses. Once you have read up on
+your topic, you will be ready to write your proposal.</p>
+
+
+
+
+<a name="proposal"></a>
+<h2 style="margin-top:100px;">Proposal</h2>
+<p>Your proposal should answer Heilmeier's questions (all 9 of them; see list below); if you think a question is not very relevant, briefly explain why. In other words, your proposal  should describe what you plan to do (the problem to address), why you want to do it,  how you will do it (what tools? e.g., SQLite, PostgreSQL, Hadoop, Kinect, iPad, etc.), how your approach is better than the state of the art, why it may succeed, and when it does, what differences will it make, how you will measure success, how long it's gonna take, etc.</p>
+
+9 Heilmeier questions (<a href="http://en.wikipedia.org/wiki/George_H._Heilmeier">source</a>)
+<ol>
+<li>What are you trying to do? Articulate your objectives using absolutely no jargon.</li>
+<li>How is it done today; what are the limits of current practice? </li>
+<li>What's new in your approach? Why will it be successful?</li>
+<li>Who cares?</li>
+<li>If you're successful, what difference and impact will it make, and how do you measure them (e.g., via user studies, experiments, groundtruth data, etc.)?</li>
+<li>What are the risks and payoffs?</li>
+<li>How much will it cost?</li>
+<li>How long will it take?</li>
+<li>What are the midterm and final "exams" to check for success? How will progress be measured.</li>
+</ol>
+
+
+<!--
+<p>You <strong>must</strong> describe what portion of the project each team member will
+  be doing.</p>
+-->
+  
+<p>Your proposal should be no more than <strong>1000</strong> words, excluding titles, section names, reference list, etc., but including the literature survey. It should use <strong>12pt font</strong>, <b>typed</b> in <strong>PDF format</strong> (can be created using any software, e.g., LaTeX, Word),
+and with figures, tables, etc. whenever useful. 
+It should be self-contained. For example,
+don't just say: &quot;We plan to implement Smith's Foo-Tree data
+structure [Smith86], and we will study its performance." Instead,
+you should briefly review the key ideas in the references, and
+describe clearly the alternatives that you will be examining.</p>
+
+<div class="alert alert-danger">
+An appendix is for optional, non-essential information. We may not read or even grade it. 
+
+Please do NOT put your survey in an appendix. 
+</div>
+
+
+<div class="alert alert-info">
+Some teams, especially those that want to turn their project into a research publication, use LaTeX for type formatting. If your team chooses to go this route, you may consider using tools like Git (<a href="https://github.gatech.edu">GT GitHub</a>) or <a href="https://www.overleaf.com">Overleaf</a> to work on the article collaboratively.
+For the LaTeX template, we suggest <a href="https://www.acm.org/publications/proceedings-template">ACM</a>'s standard template (sigconf). You may need to increase the template's default font size to 12pt (e.g., by changing "\def\ACM@fontsize{10pt}%" in the acmart.cls). 
+You are also welcome to use other templates (e.g., IEEE, Springer).
+</div>
+
+
+<div class="alert alert-warning">
+How to write the survey without using too many words?
+
+<ul>
+<li>See other articles' related work sections for inspiration, e.g., <a href="http://www.cc.gatech.edu/~dchau/papers/11-chi-apolo.pdf">Apolo paper</a></li>
+
+<li>Multiple papers may share similar themes, use similar methods so they may be summarized and discussed together.</li>
+
+<li> Note that survey account for 60% of proposal’s grade, so your survey should be substantial!</li>
+
+
+</ul>
+</div>
+
+
+
+<h3>Grading scheme &amp; Submission instructions</h3>
+<ul>
+  <li>60% for the survey</li>
+  <li>30% for innovation</li>
+  <li>10% for
+    plan of activities</li>
+  <li>For every Heilmeier question that's <strong>not</strong> mentioned, deduct 5%.</li>
+  <li>You may consider organizing your proposal based on the Heilmeier questions (e.g., each section addresses one question)</li>
+  <li>Your survey should have <strong>at least 3</strong> papers or book
+    chapters per group member (outside of any required reading for the class). 
+    <ul>
+      <li>Short papers, like PNAS, Nature, Science papers, count as
+      0.5.</li>
+      <li>Copying the abstract of the papers is obviously prohibited,
+      constituting plagiarism.</li>
+      <li>For each paper, describe <br>
+      </li>
+      <ul>
+        <li>(a) the main idea, <br>
+        </li>
+        <li>(b) why (or why not) it
+          will be useful for your project, and <br>
+        </li>
+        <li>(c) its potential shortcomings,
+        that you will try to improve upon.</li>
+      </ul>
+      
+    </ul>
+  </li>
+  
+  <li>You may use any citation style (e.g., APA, Chicago). Google Scholar supports a wide range of citation styles; it also provides BibTeX (needed if your team is using LaTeX).</li>
+  
+  <li><span style="font-weight: bold;">Clear problem definition</span>: give a precise formal problem definition, in addition to a jargon-free version (for Heilmeier question #1).</li>
+
+  <li>Provide a <span style="font-weight: bold;">plan</span> of activities and time estimates, per
+  group member. <strong>List what each group member has done, and will do.</strong></li>
+<!--  <li>Submit a hardcopy (keep the graded copy!) -- not applicable for distance learning students</li>-->
+
+  <li>Team's contact person submits a softcopy, named <strong>teamXXproposal.pdf</strong>, via T-Square (i.e., that person submits for the whole team), where XX is the team number (e.g., team01proposal.pdf for team 1)</li>
+
+<li>[-5% if not included] Distribution of team member effort. Can be as simple as "all team members have contributed similar amount of effort". If effort distribution is too uneven, I may assign higher scores to members who have contributed more.</li>
+</ul>
+
+
+
+
+<a name="proposal-presentation"></a>
+<h2 style="margin-top:100px;">Proposal Presentation 
+<!--   <span class="label label-danger">Tentative</span> -->
+</h2>
+
+<ul>
+<li><strong> 2 min</strong> per team. 
+
+See this Google spreadsheet for your team's presentation date and time (link on Piazza). Presentations take place during class time. <strong>First presentation starts at 4:30pm SHARP.</strong>
+
+<!--
+<ul>
+<li>2.5 min maximum for presentation
+<li>0.5 min for Q&A + transition to next team
+</ul>
+-->
+
+</li>
+
+<li> If you overrun, <strong>we will boot you off the stage and deduct 5% of your presentation grade.</strong></li>
+
+<li> Two teams can swap their presentation dates if both teams agree; no need to ask Polo for permission. Both teams MUST update the Google spreadsheet with the new dates.</li>
+
+<li> <strong>Attendance is mandatory.</strong> Lateness and absence will be noted; marks may be deducted for no-show. If you cannot attend, let Polo and TAs know through a private post on Piazza.</li>
+
+<li> If you team has a Q or Q3 students. You can choose to 
+  <ol>
+  <li> Present in class (physically, using the assigned time slot)</li>
+  <li> Submit a video presentation through T-Square which shows your slides with voice narration; it is up to you whether to show your face or not. If you choose this video option,
+    <ol>
+		<li>You will have 3-day lag</li>
+	    <li>Please replace the date that Polo assigned to your group with the word <strong>"video"</strong></li>
+    </ol>
+  </li>
+  </ol>
+</li>
+
+<li>Every team's presentation slides will be collected via T-Square a few days before the proposal days, and pre-loaded to the computer at the podium, to reduce switching time between teams.</li>
+
+<li>Team's contact person submits the slides, as a file called <b>teamXXslides.pdf</b> (e.g., team02slides.pdf). <strong>PDF only</strong>; no PPT or other formats.</li>
+
+</ul>
+
+<h3>Grading</h3>
+<ul>
+<li> [45%] You must answer the Heilmeier questions. 5% for each question. If a question doesn’t apply, say so.</li>
+<li>[15%] Brief literature survey. Can be combined with Heilmeier question(s).</li>
+<li>[10%] Expected innovation. Can be combined with Heilmeier question(s).</li>
+<li>[10%] Plan of activities</li>
+<li>[20%] Presentation delivery</li>
+<li>[-5%] Illegible text, tiny figures, bad color contrast, etc.</li>
+<li>[-5%] Overrun</li>
+
+
+<li> Your presentation does NOT need to strictly follow your project proposal document. For example, you can talk about ideas and materials that your team has come up recently.</li>
+
+<li><strong>Points will NOT be deducted or awarded based on the number of presenters.</strong> We saw great presentations delivered by teams having various numbers of presenters.</li>
+</ul>
+
+<h3>Tips</h3>
+<ul>
+<li> Use few slides. Less is more! Fewer slides mean less likely to overrun. Being succinct is hard.</li>
+<li> Practice timing and delivery! If you have several speakers, make sure you practice how to transition from one person to the next (e.g., passing the mic, passing control of mouse and keyboard, etc). PRACTICE! PRACTICE! PRACTICE!</li>
+</ul>
+
+
+
+<a name="progress-report"></a>
+<h2 style="margin-top:100px;">Progress Report <!-- <span class="label label-danger">Tentative</span> --></h2>
+<p>This should be no more than <strong>1600 words, 12pt font, typed</strong>.</p>
+<p> It mainly serves as a <strong>checkpoint</strong>, to detect and prevent dead-ends and other problems
+early on. </p>
+<p>It should consist of the same sections as your final
+  report (introduction, survey, etc), with a few sections &quot;under
+construction&quot;, describing the work performed up to then, and
+the revised plans for the whole project.  </p>
+<p>Specifically, the introduction and survey sections
+  should be in their final form.
+  The section on the proposed method
+  should be almost finished.
+  The sections about experiments and
+  conclusions will have whatever results you have obtained, as well
+  as `place-holders' for the results you plan/hope to obtain.</p>
+    
+    
+<div class="alert alert-info">
+The progress report may be written based on your proposal. For example, the survey in the progress report is not required to be identical to the survey in the proposal. That is, you may update the proposal's survey as needed. Of course, the number of papers should not drop below the requirement (3 papers/team member), and the quality of discussion should still be equal or better than that in the proposal.
+</div>
+
+    
+<div class="alert alert-danger">
+An appendix is for optional, non-essential information. We may not read or even grade it. 
+
+Please do NOT put your survey in an appendix. 
+</div>
+
+    
+<h3>Grading scheme &amp; Submission instructions</h3>
+
+<ul>
+<li>[70%] for proposed method (should be almost finished)</li>
+<li>[25%] for the design of upcoming experiments / evaluation</li>
+<li>[5%] for plan of activities (please show the old
+one and the revised one, along with the activities of each group
+member)</li>
+
+	<li>Clear <span style="font-weight: bold;">list of innovations</span>: give a list of the best 2-4&nbsp; ideas that your approach exhibits.</li>
+<!--  <li>Submit a hardcopy -- not applicable for distance learning students</li>-->
+
+	<li>Team's contact person submits a softcopy via T-Square (progress report only), named <strong>teamXXprogress.pdf</strong>, where XX is the team number (e.g., team01progress.pdf for team 1)</li>
+ <!-- <li>[-5%] If file not in PDF format or if filename is not as specified -->
+  
+<li>[-5% if not included] Distribution of team member effort. Can be as simple as "all team members have contributed similar amount of effort". If effort distribution is too uneven, I may assign higher scores to members who have contributed more</li>
+</ul>
+
+
+
+<a name="poster-presentation"></a>
+<h2 style="margin-top:100px;">Final Poster Presentation <span class="label label-danger">Peer-graded</span></h2>
+
+
+<h3>Logistics</h3>
+
+Each team will create a single poster (for the whole team).
+<br/>
+<br/>
+
+<!-- On <strong>Tuesday, Dec 6, 4:30pm to 6pm-ish, in Klaus Atrium</strong>,  -->
+Each student will be a presenter once, and be a grader several times:
+
+<ol>
+
+<li>Each student will present his/her team's poster during the poster session. 
+Each student will have <strong>3 minutes</strong> to present the poster, and <strong>1 minute</strong> for Q&A.
+<strong>All team members must attend the poster session.</strong> If you cannot attend part of it, you must write to the instructor <span class="label label-danger" style="font-size: 1em;">at least 5 days</span> before the presentation, or <span class="label label-danger" style="font-size: 1em;"> you will receive 0 as your presentation score</span>.
+</li>
+
+<li>Each student will also grade several presentations given by students in other teams during the poster session. A student's presentation score will be the average of the scores that he/she receives. Before the poster session, we will let each student know when he/she will present, and when he/she will grade others.
+</li>
+
+</ol>
+
+<strong>Thus, every team member should know his/her project very well, and be prepared to answer questions.</strong>
+
+<br/><br/>
+<strong>Demo</strong>: Optional but encouraged. The demo time counts towards the presentation time. If you decide to give a demo, please bring your own laptop. Assume there will little or no internet connection, and no ready access to power outlets.
+
+<br/><br/>
+<strong>Who will attend:</strong> We plan to open the session up to everybody (College of Computing, etc.).
+
+<br/><br/>
+Everyone is welcome to walk around to see other teams' posters. 
+
+
+<h3>Poster Design</h3>
+
+Design and print the poster <strong>*well before*</strong> your presentation day, to avoid last-minute rush.
+<!--  <a href="https://piazza.com/class/hyul5grbt407f1?cid=418">Please see Piazza about how to print posters</a>. -->
+
+
+<br/><br/>
+The poster must be in portrait orientation, <strong>30 inches wide and 40 inches tall</strong>. 
+Foam core poster boards, push pins, and easels will be provided to you to mount the poster. We suggest <strong>18pt</strong> font size and larger. 
+
+
+<br/><br/>
+A deck of PowerPoint slides is <strong>not acceptable</strong> as a poster. However, you may print your design on multiple smaller sheets of paper and then carefully stitch them together. See the illustration below for what is allowed and what is not.
+
+<img src="img/poster-requirements.png" style="width:400px; padding:15px; display:block;" alt="Examples of what is OK and what is not for poster design"/>
+
+
+
+
+
+<br/><br/>
+<!--
+<p>6 min per team. Time limit strictly enforced! See T-Square for your team's presentation date.</p>
+<ul>
+  <li>5 min maximum for presentation</li>
+  <li>1 min for Q&amp;A + transition to next team</li>
+</ul>
+<p>Don't use too many slides; less is more! Fewer slides = less likely to overrun. Being succint is <strong>hard</strong>, so practice your timing and delivery!</p>
+-->
+
+
+Your poster should cover the following parts (point distribution shown on the left).
+<table class="poster-table">
+<tr>
+  <td>10%</td>
+  <td><strong>Motivation/Introduction</strong>: 
+    <br/>5% What is the problem (no jargon)?
+    <br/>5% Why is it important and why should we care?
+  </td>
+</tr>
+<tr>
+  <td>20%</td>
+  <td><strong>Your approaches</strong> (algorithm and interactive visualization):
+    <br/>5% What are they?
+    <br/>5% How do they work?
+    <br/>5% Why do you think they can effectively solve your problem (i.e., what is the intuition behind your approaches)?
+    <br/>5% What is new in your approaches?
+    </td>
+</tr>
+<tr>
+  <td>10%</td>
+  <td><strong>Data</strong>: 
+    <br/>5% How did you get it? (Download? Scrape?)
+    <br/>5% What are its characteristics (e.g., size on disk, # of records, temporal or not, etc.)
+  </td>
+</tr>
+<tr>
+  <td>25%</td>
+  <td><strong>Experiments and results</strong>:
+    <br/>5% How did you evaluate your approaches?
+    <br/>10% What are the results?
+    <br/>10% How do you methods compare to other methods?</td>
+</tr>
+<!--
+<tr>
+  <td>5%</td>
+  <td><strong>Conclusions</strong> (and optionally future work/discussion)</td>
+</tr>
+-->
+<tr>
+  <td>10%</td>
+  <td><strong>Presentation delivery</strong>: 
+    <br/>5% Finished on time?
+    <br/>5% Spoke clearly and at a good pace?
+<!--     <br/>5% Established eye contact with audience? -->
+  </td>
+</tr>
+
+<tr>
+  <td>25%</td>
+  <td><strong>Poster Design</strong>: 
+    <br/>5% Layout/organization (Clear headings? Easy to follow?)
+    <br/>5% Use of text (Succinct or verbose?)
+    <br/>5% Use of graphics (Are they relevant? Do they help you better understand the project's approaches and ideas?)
+    <br/>5% Legibility (Is the text and figures too small?)
+    <br/>5% Grammar and spelling
+  </td>
+</tr>
+
+</table>
+
+
+If you team has Q or Q3 students. the team can choose to 
+<ol>
+  <li> Present in class, physically</li>
+  <li> Submit individual 3-minute video presentations (one presentation per student) through T-Square via the entry “Poster Video - Q”.
+The standard 3-day lag applies. 
+<br/>
+Name each video recording <strong>teamXXposter-YY.mp4</strong> (or .avi or .mov), where XX is the team number (e.g., 01 for team 1), and YY is the student's last name (e.g., smith).
+<br/>
+<br/>
+Project slip days <span class="label label-danger">CANNOT</span> be used for this video presentation submission, since on-campus students cannot use their project slip days either (they all present on the same day).
+<br/>
+<br/>
+Your video should show your poster (e.g., as pdf on your computer screen via screen capture, say using Quicktime, MonoSnap, etc.) with voice narration; it is up to you whether to show your face. 
+You should be able to create this recording quickly with little effort – no need to do any special video or audio editing.
+  </li>
+</ol>
+
+
+
+<div class="alert alert-success">  
+<h3>Possible software to create posters</h3>
+
+<ol>
+<li>Powerpoint/Word (save as pdf) -- GT's Office365 Powerpoint supports collaboration.</li>
+<li>Apple Pages (FREE) supports real-time collaboration (via iCloud and desktop software)</li>
+
+<li>Inkscape (free, cross platform)</li>
+<li>Polo uses <a href="https://affinity.serif.com/en-us/">Affinity Designer</a> (Mac and windows)</li>
+<li>Adobe Illustrator is pretty good and available for limited trial and also installed on Library Mac Mini.</li>
+</ol>
+ 
+
+<h3>Where to print posters?</h3>
+
+<ol>
+<li>Paper and clay. <a href="http://studentcenter.gatech.edu/seedo/paperandclay/Pages/default.aspx">http://studentcenter.gatech.edu/seedo/paperandclay/Pages/default.aspx</a></li>
+
+<li>Poster printing is available for free at the GVU, but you have to physically go to the machine, log in, and upload your pdf
+<a href="https://wiki.cc.gatech.edu/gvu/index.php/Poster_Printing_FAQ">http://gvu.gatech.edu/wiki/index.php/Poster_Printing_FAQ</a></li>
+
+
+<li>Poster printing is also available the library
+<a href="http://www.library.gatech.edu/services/computing.php">http://librarycommons.gatech.edu/lwc/multimedia.php</a></li>
+
+<li>PCS - more expensive
+<a href="http://www.oit.gatech.edu/rm/service/print-copy/print-and-copy-services">http://www.oit.gatech.edu/rm/service/print-copy/print-and-copy-services</a></li>
+</ol>
+
+Above info curated from previous classes. Thanks Yin-Shu Kuo,  Jitesh Jagadish!
+
+
+<h3>Example posters</h3>
+
+<a href="http://www.cc.gatech.edu/~dchau/posters/2012-Apolo-poster-ADAMS.pdf" class="screen_only"><img src="http://www.cc.gatech.edu/~dchau/posters/2012-Apolo-poster-ADAMS_thumb.png" alt="Apolo graph exploration poster"></a>
+
+<a href="http://www.cc.gatech.edu/~dchau/posters/2015-GLOSTIX-poster-ADAMS.pdf" class="screen_only"><img src="http://www.cc.gatech.edu/~dchau/posters/2015-GLOSTIX-poster-ADAMS_thumb.png" alt="GLO-STIX poster"></a>
+
+<a href="http://www.cc.gatech.edu/~dchau/posters/2013-insider-poster-WIN.pdf" class="screen_only"><img src="http://www.cc.gatech.edu/~dchau/posters/2013-insider-poster-WIN_thumb.png" alt="Insider trading pattern discovery poster"></a>
+
+<a href="http://www.cc.gatech.edu/~dchau/posters/2013-MMap-poster-WIN.png" class="screen_only"><img src="http://www.cc.gatech.edu/~dchau/posters/2013-MMap-poster-WIN_thumb.png" alt="MMap poster"></a>
+
+<a href="http://www.cc.gatech.edu/~dchau/posters/2015-EDOCS-SecurityPrivacy.pdf" class="screen_only"><img src="http://www.cc.gatech.edu/~dchau/posters/2015-EDOCS-SecurityPrivacy_thumb.png" alt="comment spam detection poster"></a>
+
+  
+</div>
+
+
+
+<a name="final-report"></a>
+<h2 style="margin-top:100px;">Final Report <!-- <span class="label label-danger">Tentative</span> --></h2>
+<p>It  will be a detailed description of what
+you did, what results you obtained, and what you have learned
+and/or can conclude from your work. </p>
+<p>Components:</p>
+<ol>
+  <li><strong>Writeup</strong>: no more than <strong>2800 words, 12pt font, typed</strong>. Describe in depth the novelties of your
+    approach and your discoveries/insights/experiments, etc.&nbsp; </li>
+  <li><b>Software</b>: packaging, documentation, and portability. 
+The
+goal is to provide enough material, so that other people can use it
+and continue your work, if you are to open-source it -- in other words, you should make it easy and attractive for others to use your work.
+</li>
+</ol>
+
+<h3><strong>Grading scheme &amp; Submission instructions</strong></h3>
+<ul>
+<li>Writeup
+<ul>
+<li>[2%] Introduction - Motivation</li>
+<li>[3%] Problem definition<br></li>
+<li>[5%] Survey</li>
+<li>Proposed method
+<ul>
+<li>[10%] Intuition - why should it be better than the state of the
+art?</li>
+<li>[35%] Description of your approaches: algorithms, user interfaces, etc.</li>
+</ul>
+</li>
+<li>Experiments/ Evaluation
+  <ul>
+<li>[5%] Description of your testbed; list of questions your
+experiments are designed to answer</li>
+<li>[25%] Details of the experiments; observations (as <b>many</b>
+as you can!)</li>
+</ul>
+</li>
+<li>[5%] Conclusions and discussion</li>
+<li>[-5% if not included] Distribution of team member effort. Can be as simple as "all team members have contributed similar amount of effort". If effort distribution is too uneven, I may assign higher scores to members who have contributed more.</li>
+</ul>
+</li>
+<li>[10%] Team’s contact person submits one zip file, called <strong>teamXXfinal.zip</strong>, via T-Square, where XX is the team number (e.g., team01final.zip for team 1). The teamXXfinal.zip  will contain the following 3 components: 
+      <ul>
+        <li> <strong>README.txt</strong> - a concise, short README.txt file, corresponding to the "user guide".
+         This file should contain:
+            <ol>
+            <li> DESCRIPTION - Describe the package in a few paragraphs. </li>
+            <li> INSTALLATION - How to install and setup your code. </li>
+            <li> EXECUTION - How to run a demo on your code. </li>
+            </ol>
+        </li>
+        <li> <strong>DOC</strong> - a folder called DOC (short for “documentation”) containing:
+            <ol>
+            <li><strong>teamXXreport.pdf</strong> - Your report writeup in PDF format; can be created using any software, e.g., latex, Word.</li>
+				<li><strong>teamXXposter.pdf</strong> - Your final poster.</li>
+            </ol>
+        </li>
+        <li> <strong>CODE</strong> - All your code should be added here. Make sure that your package includes only the <strong>absolutely necessary</strong> set of files.</li>
+      </ul>
+</li>
+</ul>
+
+<br/>
+<div class="alert alert-success">  
+<h3>Should datasets be included as part of our submission?</h3>
+If you are referring to (small) toy data for a demo (that we/TAs will run), you are welcome to include them. Think about the open-source software libraries that you have seen or have used, they would often include some sort of "quick start" guide to get a demo running on a toy dataset.  
+<br/><br/>
+For large datasets, please do <strong>not</strong> include them; if the dataset is public and can be easily downloaded, include the link to the dataset.
+<br/><br/>
+If getting a dataset requires writing scripts/programs, include those scripts, and write down the steps that people will need to go through (e.g., register for an account to get API key).
+<br/><br/>
+If you have processed the dataset in some ways, include the code you used, and the steps people will need to go through.
+</div>
+
+<br/>
+<br/>
+
+
+</div>
+</body>
+</html>

@@ -1,0 +1,689 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 10500.17.1226.1925                               -->
+<workbook original-version='10.5' source-build='10.5.0 (10500.17.1226.1925)' source-platform='mac' version='10.5' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='tableau' inline='true' name='federated.109xcqk0412ywc14eaoz41ud6cbj' version='10.5'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='tableau' name='textscan.00fygs711b7xq1101mkkt0b5xoct'>
+            <connection class='textscan' directory='/Users/apple/Desktop/CX4242GT/assign/HW2-Liu-Qinhan/Q1' filename='tableau.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <relation connection='textscan.00fygs711b7xq1101mkkt0b5xoct' name='tableau.csv' table='[tableau#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator='&#9;'>
+            <column datatype='integer' name='Year' ordinal='0' />
+            <column datatype='string' name='Country' ordinal='1' />
+            <column datatype='string' name='Region' ordinal='2' />
+            <column datatype='string' name='Artist' ordinal='3' />
+            <column datatype='string' name='Song' ordinal='4' />
+            <column datatype='string' name='Artist.gender' ordinal='5' />
+            <column datatype='string' name='Group.Solo' ordinal='6' />
+            <column datatype='integer' name='Place' ordinal='7' />
+            <column datatype='integer' name='Points' ordinal='8' />
+            <column datatype='integer' name='Is.Final' ordinal='9' />
+            <column datatype='integer' name='Song.In.English' ordinal='10' />
+            <column datatype='real' name='Song.Quality' ordinal='11' />
+            <column datatype='real' name='Normalized.Points' ordinal='12' />
+            <column datatype='real' name='Energy' ordinal='13' />
+            <column datatype='real' name='duration' ordinal='14' />
+            <column datatype='real' name='acousticness' ordinal='15' />
+            <column datatype='real' name='danceability' ordinal='16' />
+            <column datatype='real' name='tempo' ordinal='17' />
+            <column datatype='real' name='speechiness' ordinal='18' />
+            <column datatype='integer' name='key' ordinal='19' />
+            <column datatype='real' name='liveness' ordinal='20' />
+            <column datatype='integer' name='time_signature' ordinal='21' />
+            <column datatype='integer' name='mode' ordinal='22' />
+            <column datatype='real' name='loudness' ordinal='23' />
+            <column datatype='real' name='valence' ordinal='24' />
+            <column datatype='string' name='Happiness' ordinal='25' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;\\t&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Year]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Year</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Country</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Country]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Country</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Region</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Region]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Region</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Artist</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Artist]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Artist</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Song</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Song]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Song</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Artist.gender</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Artist.gender]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Artist.gender</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Group.Solo</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Group.Solo]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Group.Solo</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Place</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Place]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Place</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Points</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Points]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Points</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Is.Final</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Is.Final]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Is.Final</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Song.In.English</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Song.In.English]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Song.In.English</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Song.Quality</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Song.Quality]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Song.Quality</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Normalized.Points</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Normalized.Points]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Normalized.Points</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Energy</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Energy]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Energy</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>duration</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[duration]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>duration</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>acousticness</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[acousticness]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>acousticness</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>danceability</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[danceability]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>danceability</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>tempo</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[tempo]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>tempo</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>speechiness</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[speechiness]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>speechiness</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>key</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[key]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>key</remote-alias>
+            <ordinal>19</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>liveness</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[liveness]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>liveness</remote-alias>
+            <ordinal>20</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>time_signature</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[time_signature]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>time_signature</remote-alias>
+            <ordinal>21</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>mode</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[mode]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>mode</remote-alias>
+            <ordinal>22</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>loudness</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[loudness]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>loudness</remote-alias>
+            <ordinal>23</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>valence</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[valence]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>valence</remote-alias>
+            <ordinal>24</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Happiness</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Happiness]</local-name>
+            <parent-name>[tableau.csv]</parent-name>
+            <remote-alias>Happiness</remote-alias>
+            <ordinal>25</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[Country]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column datatype='string' name='[Song]' role='dimension' type='nominal' />
+      <column datatype='integer' name='[Year]' role='dimension' type='quantitative' />
+      <column caption='Acousticness' datatype='real' name='[acousticness]' role='measure' type='quantitative' />
+      <column caption='Danceability' datatype='real' name='[danceability]' role='measure' type='quantitative' />
+      <column caption='Duration' datatype='real' name='[duration]' role='measure' type='quantitative' />
+      <column caption='Key' datatype='integer' name='[key]' role='dimension' type='ordinal' />
+      <column caption='Liveness' datatype='real' name='[liveness]' role='measure' type='quantitative' />
+      <column caption='Loudness' datatype='real' name='[loudness]' role='measure' type='quantitative' />
+      <column caption='Mode' datatype='integer' name='[mode]' role='measure' type='quantitative' />
+      <column caption='Speechiness' datatype='real' name='[speechiness]' role='measure' type='quantitative' />
+      <column caption='Tempo' datatype='real' name='[tempo]' role='measure' type='quantitative' />
+      <column caption='Time Signature' datatype='integer' name='[time_signature]' role='measure' type='quantitative' />
+      <column caption='Valence' datatype='real' name='[valence]' role='measure' type='quantitative' />
+      <column-instance column='[Song]' derivation='None' name='[none:Song:nk]' pivot='key' type='nominal' />
+      <layout dim-ordering='alphabetic' dim-percentage='0.421687' measure-ordering='alphabetic' measure-percentage='0.578313' show-structure='true' />
+      <style>
+        <style-rule element='mark'>
+          <encoding attr='color' field='[none:Song:nk]' type='palette'>
+            <map to='#4e79a7'>
+              <bucket>&quot;Shake It Up Shekerim&quot;</bucket>
+            </map>
+            <map to='#a0cbe8'>
+              <bucket>&quot;Molitva&quot;</bucket>
+            </map>
+            <map to='#f28e2b'>
+              <bucket>&quot;Dancing Lasha Tumbai&quot;</bucket>
+            </map>
+            <map to='#ff9da7'>
+              <bucket>&quot;Song \#1&quot;</bucket>
+            </map>
+          </encoding>
+        </style-rule>
+      </style>
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <actions>
+    <action caption='Highlight 1 (generated)' name='[Action1]'>
+      <activation auto-clear='true' type='on-select' />
+      <source type='sheet' worksheet='Table' />
+      <command command='tsc:brush'>
+        <param name='field-captions' value='Song' />
+        <param name='target' value='Table' />
+      </command>
+    </action>
+  </actions>
+  <worksheets>
+    <worksheet name='Table'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='tableau' name='federated.109xcqk0412ywc14eaoz41ud6cbj' />
+          </datasources>
+          <datasource-dependencies datasource='federated.109xcqk0412ywc14eaoz41ud6cbj'>
+            <column datatype='string' name='[Song]' role='dimension' type='nominal' />
+            <column caption='Acousticness' datatype='real' name='[acousticness]' role='measure' type='quantitative' />
+            <column caption='Danceability' datatype='real' name='[danceability]' role='measure' type='quantitative' />
+            <column caption='Liveness' datatype='real' name='[liveness]' role='measure' type='quantitative' />
+            <column-instance column='[Song]' derivation='None' name='[none:Song:nk]' pivot='key' type='nominal' />
+            <column caption='Speechiness' datatype='real' name='[speechiness]' role='measure' type='quantitative' />
+            <column-instance column='[acousticness]' derivation='Sum' name='[sum:acousticness:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[danceability]' derivation='Sum' name='[sum:danceability:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[liveness]' derivation='Sum' name='[sum:liveness:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[speechiness]' derivation='Sum' name='[sum:speechiness:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[valence]' derivation='Sum' name='[sum:valence:qk]' pivot='key' type='quantitative' />
+            <column caption='Valence' datatype='real' name='[valence]' role='measure' type='quantitative' />
+          </datasource-dependencies>
+          <sort class='computed' column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' direction='ASC' using='[federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:danceability:qk]' />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' />
+            </encodings>
+          </pane>
+          <pane id='1' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:acousticness:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-color' value='#4e79a7' />
+              </style-rule>
+            </style>
+          </pane>
+          <pane id='2' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:danceability:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' />
+            </encodings>
+          </pane>
+          <pane id='3' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:liveness:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' />
+            </encodings>
+          </pane>
+          <pane id='4' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:speechiness:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' />
+            </encodings>
+          </pane>
+          <pane id='5' selection-relaxation-option='selection-relaxation-allow' x-axis-name='[federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:valence:qk]'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <color column='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]</rows>
+        <cols>([federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:acousticness:qk] + ([federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:danceability:qk] + ([federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:liveness:qk] + ([federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:speechiness:qk] + [federated.109xcqk0412ywc14eaoz41ud6cbj].[sum:valence:qk]))))</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' maximized='true' name='Table'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+        <edge name='right'>
+          <strip size='160'>
+            <card pane-specification-id='1' param='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]' type='color' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight field='[federated.109xcqk0412ywc14eaoz41ud6cbj].[none:Song:nk]'>
+          <bucket-selection />
+        </highlight>
+      </viewpoint>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='159' name='Table' width='192'>
+      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
+      AABJRU5ErkJggg==
+    </thumbnail>
+  </thumbnails>
+</workbook>
