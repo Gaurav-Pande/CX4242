@@ -1,0 +1,41 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: black;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+}
+
+.legend {
+  padding: 5px;
+  font: 15px sans-serif;
+  background: yellow;
+  box-shadow: 2px 2px 1px #888;
+}
+
+.title {
+  font: 13px sans-serif;
+}
+
+#xaxis .domain {
+    fill:none;
+    stroke:#000;
+}
+#xaxis text, #yaxis text {
+  font-size: 12px;
+}
+
+.line {
+    fill: none;
+    stroke: #ffab00;
+    stroke-width: 3;
+}
+
+/* Style the dots by assigning a fill and stroke */
+.dot {
+    fill: #ffab00;
+    stroke: #fff;
+}
