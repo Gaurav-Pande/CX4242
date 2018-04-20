@@ -11,12 +11,12 @@ from sklearn.preprocessing import StandardScaler
 
 ## Cross Validation ##
 from sklearn.model_selection import ShuffleSplit
-from sklearn.cross_validation import train_test_split
+# from sklearn.cross_validation import train_test_split
 
 ## Models ##
-from sklearn.neural_network import MLPClassifier	# For Neural Network
-from sklearn.neighbors import KNeighborsClassifier	# For Support Vector Machine
-from sklearn.svm import SVC, NuSVC, LinearSVC	# For Support Vector Machine
+from sklearn.neural_network import MLPClassifier, MLPRegressor	# For Neural Network
+from sklearn.neighbors import KNeighborsClassifier, KNeighborsRegressor	# For K Nereast Neighbor
+from sklearn.svm import SVC, NuSVC, LinearSVC, SVR	# For Support Vector Machine
 from sklearn.linear_model import LinearRegression	# For Linear Regression
 
 ## Plots ##
@@ -38,81 +38,143 @@ Random_State = 5
 ARCHI = (100,)
 N_NEI = 10
 
-def nn(df):
+def try_models(df):
 	X = df.iloc[:,:-1]
 	y = df.iloc[:,-1]
-	X = preprocess_data(X)
-	X_train,X_test,y_train,y_test = train_test_split(X,y, random_state=Random_State)
-	# X_train,X_test = preprocess_feature(X_train,X_test)
+	X,y = preprocess_data(X,y)
 
-	model = MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto',beta_1=0.9, beta_2=0.999, early_stopping=False,epsilon=1e-08, hidden_layer_sizes=ARCHI, learning_rate='constant',learning_rate_init=0.02, max_iter=200, momentum=0.9,nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,warm_start=False)
-	model = fit_model(model,X_train,y_train,X_test,y_test)
+	# X_train,X_test,y_train,y_test = split_tran_test(X,y)
+	# model, label = nn(X_train,y_train)
+	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	# model, label = knn(X_train,y_train)
+	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	# model, label = svr(X_train,y_train)
+	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	# model, label = lr(X_train,y_train)
+	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+
+	cross_validate(X,y)
+
+def cross_validate(X,y):
+	nn_scores = []
+	knn_scores = []
+	svr_scores = []
+	lr_scores = []
+	for portion in range(Random_State):
+		X_train,X_test,y_train,y_test = split_tran_test(X,y,portion)
+
+		model, label = nn(X_train,y_train)
+		nn_scores.append( evaluate(model,X,y,X_train,X_test,y_train,y_test,label) )
+
+		model, label = knn(X_train,y_train)
+		knn_scores.append( evaluate(model,X,y,X_train,X_test,y_train,y_test,label) )
+
+		model, label = svr(X_train,y_train)
+		svr_scores.append( evaluate(model,X,y,X_train,X_test,y_train,y_test,label) )
+
+		model, label = lr(X_train,y_train)
+		lr_scores.append( evaluate(model,X,y,X_train,X_test,y_train,y_test,label) )
+
+	print 'mae', 'mse', 'evs', 'r2'
+	print np.mean(nn_scores, axis=0)
+	print np.mean(nn_scores, axis=0)
+	print np.mean(svr_scores, axis=0)
+	print np.mean(lr_scores, axis=0)
+
+	record_to_file('mae\t\tmse\t\tevs\t\tr2')
+	record_to_file(np.array2string(np.mean(nn_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
+	record_to_file(np.array2string(np.mean(knn_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
+	record_to_file(np.array2string(np.mean(svr_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
+	record_to_file(np.array2string(np.mean(lr_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
+
+
+def record_to_file(line):
+	with open('result.txt', 'a') as fhand:
+		fhand.write(line+'\n')
+
+def preprocess_data(X,y):
+	scaler = StandardScaler().fit(X)
+	return scaler.transform(X), y
+
+def split_tran_test(X,y,portion=None):
+	# X_train,X_test,y_train,y_test = train_test_split(X,y, random_state=Random_State)
+
+	# Only a continuous portion of the data is assigned to be tested on
+	length = len(X)
+	if not portion:
+		portion = random.randint(0,Random_State-1)
+	start = length*portion/Random_State
+	end = length*(portion+1)/Random_State
+	X_test = X[start:end]
+	y_test = y[start:end]
+
+	X1 = X[:start]
+	X2 = X[end:]
+	y1 = y[:start]
+	y2 = y[end:]
+	X_train = np.concatenate((X1,X2),axis=0)
+	y_train = np.concatenate((y1,y2),axis=0)
+
+	return X_train,X_test,y_train,y_test
+
+def evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=False):
+	ypred = model.predict(X_test)
+	ytrue = y_test
+
+	mae = mean_absolute_error(ytrue, ypred)
+	mse = mean_squared_error(ytrue, ypred)
+	# msle = mean_squared_log_error(ytrue, ypred)
+	evs = explained_variance_score(ytrue, ypred)
+	r2 = r2_score(ytrue, ypred)
+
+	if graph:
+		print label
+		print "Mean Absolute Error:\t", mae
+		print "Mean Squared Error:\t", mse
+		print "Explained Variance Score:\t", evs
+		print "R2 Score:\t", r2
+		plot_curve(ytrue,ypred,label)
+
+	return [mae, mse, evs, r2]
+
+def nn(X_train,y_train):
+	# model = MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto',beta_1=0.9, beta_2=0.999, early_stopping=False,epsilon=1e-08, hidden_layer_sizes=ARCHI, learning_rate='constant',learning_rate_init=0.02, max_iter=200, momentum=0.9,nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,warm_start=False)
+	model = MLPRegressor(hidden_layer_sizes=ARCHI, activation='relu', solver='adam', alpha=0.0001, batch_size='auto', learning_rate='constant', learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+	model.fit(X_train,y_train)
 	label = "Neural Net-L=0.02,L" + str(ARCHI)
-	# learn_cur(model,TITLE,X,y,label)
-	pred = model.predict(X)
-	evaluate(y,pred)
-	plot_curve(y,pred,label)
-	# plot_against(y,pred,label)
+	return model,label
 
-def knn(df):
-	X = df.iloc[:,:-1]
-	y = df.iloc[:,-1]
-	X = preprocess_data(X)
-	X_train,X_test,y_train,y_test = train_test_split(X,y, test_size=0.33, random_state=Random_State)
-	# X_train,X_test = preprocess_feature(X_train,X_test)
-
-	model = KNeighborsClassifier(n_neighbors=N_NEI)
-	model = fit_model(model,X_train,y_train,X_test,y_test)
+def knn(X_train,y_train):
+	# model = KNeighborsClassifier(n_neighbors=N_NEI)
+	model = KNeighborsRegressor(n_neighbors=N_NEI, weights='distance', algorithm='auto', leaf_size=30, p=2, metric='minkowski', metric_params=None, n_jobs=1)
+	model.fit(X_train,y_train)
 	label = "KNN-Neighbors " + str(N_NEI)
+	return model,label
 
-	pred = model.predict(X)
-	evaluate(y,pred)
-	plot_curve(y,pred,label)
+def svr(X_train,y_train):
+	model = SVR(kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)
+	model.fit(X_train,y_train)
+	label = "SVM Regression"
+	return model,label
 
-def svm(df):
-	X = df.iloc[:,:-1]
-	y = df.iloc[:,-1]
-	X = preprocess_data(X)
-	X_train,X_test,y_train,y_test = train_test_split(X,y, random_state=Random_State)
-	# X_train,X_test = preprocess_feature(X_train,X_test)
-
-	model = LinearSVC(multi_class = 'ovr')
-	model = fit_model(model,X_train,y_train,X_test,y_test)
-	label = "SVM"
-
-	pred = model.predict(X)
-	evaluate(y,pred)
-	plot_curve(y,pred,label)
-
-def lr(df):
-	X = df.iloc[:,:-1]
-	y = df.iloc[:,-1]
-	X = preprocess_data(X)
-	X_train,X_test,y_train,y_test = train_test_split(X,y, random_state=Random_State)
-	# X_train,X_test = preprocess_feature(X_train,X_test)
-
+def lr(X_train,y_train):
 	model = LinearRegression(fit_intercept=True, normalize=False, copy_X=True, n_jobs=1)
-
-	model = fit_model(model,X_train,y_train,X_test,y_test)
+	model.fit(X_train,y_train)
 	label = "Linear Regression"
+	return model,label
 
-	pred = model.predict(X)
-	evaluate(y,pred)
-	plot_curve(y,pred,label)
 
-def evaluate(ytrue,ypred):
-
-	print "Explained Variance Score:\t",explained_variance_score(ytrue, ypred)
-	print "Mean Absolute Error:\t",mean_absolute_error(ytrue, ypred)
-	print "Mean Squared Error:\t",mean_squared_error(ytrue, ypred)
-	print "Mean Squared Log Error:\t", mean_squared_log_error(ytrue, ypred)
-	print "R2 Score:\t",r2_score(ytrue, ypred)
+def svm(X_train,y_train):
+	model = LinearSVC(multi_class = 'ovr')
+	model.fit(X_train,y_train)
+	label = "SVM"
+	return model,label
 
 def plot_curve(tar,pred,label):
 	plt.figure()
 	plt.title(label)
 
-	plt.xlabel("Weeks")
+	plt.xlabel("Samples")
 	plt.ylabel("Flu Influenza Activity")
 	# x values
 	x_values = np.arange(1,tar.shape[0],1)
@@ -135,10 +197,6 @@ def plot_against(tar,pred,label):
 	print "Check out the graph popped up"
 	plt.show()
 
-def preprocess_data(X):
-	scaler = StandardScaler().fit(X)
-	return scaler.transform(X)
-
 def preprocess_feature(X_train,X_test):
 	# Preprocess the Features
 	scaler = StandardScaler().fit(X_train)
@@ -146,12 +204,10 @@ def preprocess_feature(X_train,X_test):
 	X_test = scaler.transform(X_test)
 	return X_train,X_test
 
-
 def score_model(model,X,y):
 	cv_scores = cross_val_score(model,X,y,cv=Random_State)
 	print "Cross Validation Scores:"
 	print cv_scores
-
 
 def fit_model(model,X_train,y_train,X_test,y_test):
 	print "Training size:\t"
@@ -161,7 +217,6 @@ def fit_model(model,X_train,y_train,X_test,y_test):
 	# print "Accuracy: \t", accu
 
 	return model
-
 
 def learn_cur(model, title, X, y, label=None, ylim=None, cv=None, n_jobs=1, train_sizes=np.linspace(.1, 1.0, 10)):
 								# ylim : tuple, shape (ymin, ymax), optional. Defines minimum and maximum yvalues plotted.
