@@ -43,17 +43,21 @@ def try_models(df):
 	y = df.iloc[:,-1]
 	X,y = preprocess_data(X,y)
 
-	# X_train,X_test,y_train,y_test = split_tran_test(X,y)
-	# model, label = nn(X_train,y_train)
-	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
-	# model, label = knn(X_train,y_train)
-	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
-	# model, label = svr(X_train,y_train)
-	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
-	# model, label = lr(X_train,y_train)
-	# evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	X_train,X_test,y_train,y_test = split_tran_test(X,y)
+	model, label = nn(X_train,y_train)
+	evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	model, label = knn(X_train,y_train)
+	evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	model, label = svr(X_train,y_train)
+	evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
+	model, label = lr(X_train,y_train)
+	evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=True)
 
-	cross_validate(X,y)
+def cross_validate_models(df):
+	X = df.iloc[:,:-1]
+	y = df.iloc[:,-1]
+	X,y = preprocess_data(X,y)
+	return cross_validate(X,y)
 
 def cross_validate(X,y):
 	nn_scores = []
@@ -75,18 +79,24 @@ def cross_validate(X,y):
 		model, label = lr(X_train,y_train)
 		lr_scores.append( evaluate(model,X,y,X_train,X_test,y_train,y_test,label) )
 
-	print 'mae', 'mse', 'evs', 'r2'
-	print np.mean(nn_scores, axis=0)
-	print np.mean(nn_scores, axis=0)
-	print np.mean(svr_scores, axis=0)
-	print np.mean(lr_scores, axis=0)
+	nn_metric = np.mean(nn_scores, axis=0)
+	knn_metric = np.mean(knn_scores, axis=0)
+	svr_metric = np.mean(svr_scores, axis=0)
+	lr_metric = np.mean(lr_scores, axis=0)
+
+	# print'mae', 'mse', 'evs', 'r2'
+	# printnn_metric
+	# printknn_metric
+	# printsvr_metric
+	# printlr_metric
 
 	record_to_file('mae\t\tmse\t\tevs\t\tr2')
-	record_to_file(np.array2string(np.mean(nn_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
-	record_to_file(np.array2string(np.mean(knn_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
-	record_to_file(np.array2string(np.mean(svr_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
-	record_to_file(np.array2string(np.mean(lr_scores, axis=0), formatter={'float_kind':lambda x: "%.2f" % x}))
+	record_to_file(np.array2string(nn_metric, formatter={'float_kind':lambda x: "%.3f" % x}))
+	record_to_file(np.array2string(knn_metric, formatter={'float_kind':lambda x: "%.3f" % x}))
+	record_to_file(np.array2string(svr_metric, formatter={'float_kind':lambda x: "%.3f" % x}))
+	record_to_file(np.array2string(lr_metric, formatter={'float_kind':lambda x: "%.3f" % x}))
 
+	return nn_metric, knn_metric, svr_metric, lr_metric
 
 def record_to_file(line):
 	with open('result.txt', 'a') as fhand:
@@ -103,10 +113,13 @@ def split_tran_test(X,y,portion=None):
 	length = len(X)
 	if not portion:
 		portion = random.randint(0,Random_State-1)
-	start = length*portion/Random_State
-	end = length*(portion+1)/Random_State
-	X_test = X[start:end]
-	y_test = y[start:end]
+	start = int(length*portion/Random_State)
+	end = int(length*(portion+1)/Random_State)
+	try:
+		X_test = X[start:end]
+		y_test = y[start:end]
+	except:
+		print('error', start, end)
 
 	X1 = X[:start]
 	X2 = X[end:]
@@ -128,18 +141,18 @@ def evaluate(model,X,y,X_train,X_test,y_train,y_test,label,graph=False):
 	r2 = r2_score(ytrue, ypred)
 
 	if graph:
-		print label
-		print "Mean Absolute Error:\t", mae
-		print "Mean Squared Error:\t", mse
-		print "Explained Variance Score:\t", evs
-		print "R2 Score:\t", r2
+		print(label)
+		print("Mean Absolute Error:\t", mae)
+		print("Mean Squared Error:\t", mse)
+		print("Explained Variance Score:\t", evs)
+		print("R2 Score:\t", r2)
 		plot_curve(ytrue,ypred,label)
 
 	return [mae, mse, evs, r2]
 
 def nn(X_train,y_train):
 	# model = MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto',beta_1=0.9, beta_2=0.999, early_stopping=False,epsilon=1e-08, hidden_layer_sizes=ARCHI, learning_rate='constant',learning_rate_init=0.02, max_iter=200, momentum=0.9,nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,warm_start=False)
-	model = MLPRegressor(hidden_layer_sizes=ARCHI, activation='relu', solver='adam', alpha=0.0001, batch_size='auto', learning_rate='constant', learning_rate_init=0.001, power_t=0.5, max_iter=200, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
+	model = MLPRegressor(hidden_layer_sizes=ARCHI, activation='relu', solver='adam', alpha=0.0001, batch_size='auto', learning_rate='constant', learning_rate_init=0.001, power_t=0.5, max_iter=5000, shuffle=True, random_state=None, tol=0.0001, verbose=False, warm_start=False, momentum=0.9, nesterovs_momentum=True, early_stopping=False, validation_fraction=0.1, beta_1=0.9, beta_2=0.999, epsilon=1e-08)
 	model.fit(X_train,y_train)
 	label = "Neural Net-L=0.02,L" + str(ARCHI)
 	return model,label
@@ -152,7 +165,7 @@ def knn(X_train,y_train):
 	return model,label
 
 def svr(X_train,y_train):
-	model = SVR(kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=-1)
+	model = SVR(kernel='rbf', degree=3, gamma='auto', coef0=0.0, tol=0.001, C=1.0, epsilon=0.1, shrinking=True, cache_size=200, verbose=False, max_iter=10000)
 	model.fit(X_train,y_train)
 	label = "SVM Regression"
 	return model,label
@@ -174,16 +187,18 @@ def plot_curve(tar,pred,label):
 	plt.figure()
 	plt.title(label)
 
-	plt.xlabel("Samples")
+	plt.xlabel("Weeks")
 	plt.ylabel("Flu Influenza Activity")
 	# x values
-	x_values = np.arange(1,tar.shape[0],1)
+	x_values = np.arange(1,tar.shape[0]+1,1)
+	# plt.xticks(np.arange(1,tar.shape[0]+1, 5.0))
+	# plt.xticks(rotation=70)
 
-	plt.plot(tar, '--', color="r", label="Real Value")
-	plt.plot(pred, '--', color="b", label="Predicted Value")
+	plt.plot(x_values, tar, '--', color="r", label="Real Value")
+	plt.plot(x_values, pred, '--', color="b", label="Predicted Value")
 
 	plt.legend(loc="best")
-	print "Check out the graph popped up"
+	print("Check out the graph popped up")
 	plt.show()
 
 def plot_against(tar,pred,label):
@@ -194,7 +209,7 @@ def plot_against(tar,pred,label):
 	plt.ylabel("Predictions")
 	plt.plot(tar,pred, '-o', color="b")
 
-	print "Check out the graph popped up"
+	print("Check out the graph popped up")
 	plt.show()
 
 def preprocess_feature(X_train,X_test):
@@ -206,15 +221,15 @@ def preprocess_feature(X_train,X_test):
 
 def score_model(model,X,y):
 	cv_scores = cross_val_score(model,X,y,cv=Random_State)
-	print "Cross Validation Scores:"
-	print cv_scores
+	print("Cross Validation Scores:")
+	print(cv_scores)
 
 def fit_model(model,X_train,y_train,X_test,y_test):
-	print "Training size:\t"
-	print X_train.shape[0]
+	print("Training size:\t")
+	print(X_train.shape[0])
 	model.fit(X_train,y_train)
 	# accu = accuracy_score(y_test,model.predict(X_test))
-	# print "Accuracy: \t", accu
+	# print"Accuracy: \t", accu
 
 	return model
 
@@ -256,4 +271,4 @@ def learn_cur(model, title, X, y, label=None, ylim=None, cv=None, n_jobs=1, trai
 if __name__ == '__main__':
 	# df = data_loader.load_data(sys.argv[1]) # argv[1] is the file storing the dataset
 	# neural_network(df)
-	print "nn.py not for direct usage"
+	print("model.py not for direct usage")
